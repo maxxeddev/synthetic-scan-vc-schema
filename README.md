@@ -46,7 +46,7 @@ Add it after the base VC context:
 
 ## 📦 Example Credential Usage
 
-For a full example see: https://github.com/maxxeddev/synthetic-scan-vc-schema/blob/main/examples/example-vc
+For a full example see: https://github.com/maxxeddev/synthetic-scan-vc-schema/blob/main/examples/example-vc.json
 
 ```json
 {
