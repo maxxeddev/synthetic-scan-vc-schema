@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/maxxeddev/synthetic-scan-vc-schema/main/schemas/imageobject-scan-target-v1.json",
+  "title": "ImageObject Scan Target",
+  "description": "Schema.org-compliant image metadata with perceptual hash extension. Supports original URL, archival, and on-chain resource.",
+  "type": "object",
+  "required": ["@type", "contentUrl", "encodingFormat", "perceptualHash"],
+  "properties": {
+    "@type": { "type": "string", "const": "ImageObject" },
+    "contentUrl": { "type": "string", "format": "uri" },
+    "archivedAt": { "type": "string", "format": "uri" },
+    "linkedResource": { "type": "string", "format": "uri" },
+    "encodingFormat": { "type": "string" },
+    "height": { "type": "integer" },
+    "width": { "type": "integer" },
+    "sha256": { "type": "string" },
+    "perceptualHash": {
+      "type": "object",
+      "required": ["algorithm", "value", "distanceThreshold"],
+      "properties": {
+        "algorithm": { "type": "string" },
+        "value": { "type": "string" },
+        "distanceThreshold": { "type": "integer" },
+        "referenceHashes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["hash", "source", "similarity"],
+            "properties": {
+              "hash": { "type": "string" },
+              "source": { "type": "string", "format": "uri" },
+              "similarity": { "type": "number", "minimum": 0, "maximum": 1 }
+            }
+          }
+        },
+        "matchConfidence": { "type": "string", "enum": ["low", "medium", "high"] },
+        "similarityScore": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "thumbnail": {
+      "type": "object",
+      "properties": {
+        "contentUrl": { "type": "string", "format": "uri" },
+        "encodingFormat": { "type": "string" }
+      }
+    }
+  }
+}
