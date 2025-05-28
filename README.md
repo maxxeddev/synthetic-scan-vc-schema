@@ -9,7 +9,7 @@ This repository defines a **W3C Verifiable Credential schema** for synthetic con
 The schema is hosted at:
 
 ```
-https://maxxdedev.github.io/synthetic-scan-vc-schema/schemas/synthetic-content-scan.schema.v1.json
+https://raw.githubusercontent.com/maxxeddev/synthetic-scan-vc-schema/refs/heads/main/schemas/synthetic-content-scan.schema.v1.json
 ```
 
 Use this as the `credentialSchema.id` in any Verifiable Credential referencing this schema.
