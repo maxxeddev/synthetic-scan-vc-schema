@@ -1,0 +1,129 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schema.org",
+    "https://raw.githubusercontent.com/maxxeddev/synthetic-scan-vc-schema/main/contexts/synthetic-content-scan-v2.jsonld"
+  ],
+  "type": [
+    "VerifiableCredential",
+    "SyntheticContentScanCredential"
+  ],
+  "issuer": "did:cheqd:testnet:7bf81a20-633c-4cc7-bc4a-5a45801005e0",
+  "issuanceDate": "2025-05-28T11:00:00Z",
+  "credentialSchema": {
+    "id": "https://raw.githubusercontent.com/maxxeddev/synthetic-scan-vc-schema/main/schemas/synthetic-content-scan.schema.v2.json",
+    "type": "JsonSchema"
+  },
+  "credentialSubject": {
+    "id": "did:key:z6MkhY8abc123",
+    "image": {
+      "@type": "ImageObject",
+      "contentUrl": "https://example.com/image.png",
+      "archivedAt": "https://web.archive.org/web/20250528094500/https://example.com/image.png",
+      "linkedResource": "did:cheqd:testnet:7bf81a20-633c-4cc7-bc4a-5a45801005e0/resources/Qmfakehash",
+      "encodingFormat": "image/png",
+      "height": 1024,
+      "width": 1024,
+      "sha256": "adf384a6a3b9bcab4a7e833f1a9a5d15cbee0e6f15cce1a23e1fae3c5b22a7af",
+      "perceptualHash": {
+        "algorithm": "pHash",
+        "value": "99e19a7f3ce197d1",
+        "distanceThreshold": 8,
+        "referenceHashes": [
+          {
+            "hash": "9be18a7f3de193d1",
+            "source": "did:cheqd:testnet:7bf81a20-633c-4cc7-bc4a-5a45801005e0/resources/Qmrefhash",
+            "similarity": 0.94
+          }
+        ],
+        "matchConfidence": "high",
+        "similarityScore": 0.94
+      },
+      "thumbnail": {
+        "contentUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA...",
+        "encodingFormat": "image/png"
+      }
+    },
+    "scanResults": [
+      {
+        "@type": "SynthIDScanResult",
+        "mediaType": "image",
+        "tool": "Google DeepMind SynthID",
+        "version": "1.0",
+        "detected": false,
+        "confidence": 0.01,
+        "reference": "https://deepmind.google/technologies/synthid/"
+      },
+      {
+        "@type": "ContentCredentialScanResult",
+        "tool": "C2PA",
+        "detected": true,
+        "issuer": "https://openai.com/",
+        "manifest": {
+          "claim_generator": "DALL·E 3",
+          "title": "Generated Image",
+          "format": "image/png",
+          "instance_id": "xmp:iid:e928fac1-8473-4c70-8219-369e91d4e58d",
+          "assertions": [
+            {
+              "label": "stds.schema-org.CreativeWork",
+              "data": {
+                "@context": "http://schema.org/",
+                "@type": "CreativeWork",
+                "author": [
+                  {
+                    "@type": "Organization",
+                    "name": "OpenAI"
+                  }
+                ]
+              },
+              "kind": "Json"
+            },
+            {
+              "label": "c2pa.actions",
+              "data": {
+                "actions": [
+                  {
+                    "action": "c2pa.created"
+                  }
+                ]
+              }
+            }
+          ],
+          "signature_info": {
+            "issuer": "OpenAI",
+            "time": "2025-05-28T10:59:00Z"
+          }
+        },
+        "reference": "https://contentcredentials.org/verify/manifest/abcdef"
+      },
+      {
+        "@type": "ModelScanResult",
+        "tool": "Hugging Face Inference API",
+        "model": {
+          "name": "Organika/sdxl-detector",
+          "version": "1.1.0",
+          "publisher": "Organika.ai",
+          "license": "cc-by-nc-3.0",
+          "url": "https://huggingface.co/Organika/sdxl-detector"
+        },
+        "labels": ["AI-generated"],
+        "scores": [0.97],
+        "rawResult": {
+          "label": "AI-generated",
+          "score": 0.97,
+          "explanation": "Image classified as AI-generated with high confidence."
+        },
+        "reference": "https://huggingface.co/Organika/sdxl-detector"
+      }
+    ],
+    "scanTimestamp": "2025-05-28T10:59:00Z"
+  },
+  "proof": {
+    "type": "Ed25519Signature2020",
+    "created": "2025-05-28T11:00:00Z",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "did:cheqd:testnet:7bf81a20-633c-4cc7-bc4a-5a45801005e0#keys-1",
+    "proofValue": "z3W...signature...abc"
+  }
+}

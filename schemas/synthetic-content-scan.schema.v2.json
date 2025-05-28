@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/maxxeddev/synthetic-scan-vc-schema/main/schemas/synthetic-content-scan.schema.v2.json",
+  "title": "TrustLens Synthetic Content Scan Credential",
+  "description": "A Verifiable Credential for synthetic content scan results (image provenance, model inference, watermark detection, etc).",
+  "type": "object",
+  "required": [
+    "@context",
+    "type",
+    "issuer",
+    "issuanceDate",
+    "credentialSchema",
+    "credentialSubject",
+    "proof"
+  ],
+  "properties": {
+    "@context": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "type": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "issuer": { "type": "string" },
+    "issuanceDate": { "type": "string", "format": "date-time" },
+    "credentialSchema": {
+      "type": "object",
+      "required": ["id", "type"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "enum": ["JsonSchema"] }
+      }
+    },
+    "credentialSubject": {
+      "type": "object",
+      "required": ["id", "image", "scanResults", "scanTimestamp"],
+      "properties": {
+        "id": { "type": "string" },
+        "image": {
+          "$ref": "https://trustlens.dev/schemas/imageobject-scan-target-v1.json"
+        },
+        "scanResults": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "oneOf": [
+              { "$ref": "https://raw.githubusercontent.com/maxxeddev/synthetic-scan-vc-schema/main/schemas/scan-synthid-v1.json" },
+              { "$ref": "https://raw.githubusercontent.com/maxxeddev/synthetic-scan-vc-schema/main/schemas/scan-contentcredential-v1.json" },
+              { "$ref": "https://raw.githubusercontent.com/maxxeddev/synthetic-scan-vc-schema/main/schemas/scan-modelresult-v1.json" }
+            ]
+          }
+        },
+        "scanTimestamp": { "type": "string", "format": "date-time" }
+      }
+    },
+    "proof": { "type": "object" }
+  }
+}

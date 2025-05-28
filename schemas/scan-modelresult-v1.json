@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/maxxeddev/synthetic-scan-vc-schema/main/schemas/scan-modelresult-v1.json",
+  "title": "Model Scan Result",
+  "description": "Schema for AI model-based scan results, incorporating detailed model metadata.",
+  "type": "object",
+  "required": ["@type", "tool", "model", "labels", "scores"],
+  "properties": {
+    "@type": {
+      "type": "string",
+      "const": "ModelScanResult"
+    },
+    "tool": {
+      "type": "string",
+      "description": "Inference engine or API used (e.g., 'Hugging Face Inference API')."
+    },
+    "model": {
+      "type": "object",
+      "description": "Detailed information about the model used for inference.",
+      "required": ["name", "version", "publisher", "license", "url"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the model (e.g., 'Organika/sdxl-detector')."
+        },
+        "version": {
+          "type": "string",
+          "description": "Version of the model (e.g., '1.0')."
+        },
+        "publisher": {
+          "type": "string",
+          "description": "Publisher or creator of the model (e.g., 'Organika.ai')."
+        },
+        "license": {
+          "type": "string",
+          "description": "License under which the model is released (e.g., 'cc-by-nc-3.0')."
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the model's homepage or repository."
+        }
+      }
+    },
+    "labels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Predicted labels or classes."
+    },
+    "scores": {
+      "type": "array",
+      "items": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      },
+      "description": "Confidence scores corresponding to the predicted labels."
+    },
+    "rawResult": {
+      "type": "object",
+      "description": "Raw result object from inference API/model."
+    },
+    "reference": {
+      "type": "string",
+      "format": "uri",
+      "description": "Reference URL to the model or inference details."
+    },
+    "additionalType": {
+      "type": "string",
+      "format": "uri",
+      "description": "Optional: a schema.org/PropertyValue type URI."
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "id": "@id",
+    "type": "@type",
+
+    "schema": "https://schema.org/",
+    "vc": "https://www.w3.org/2018/credentials#",
+    "scs": "https://raw.githubusercontent.com/maxxeddev/synthetic-scan-vc-schema/main/contexts#",
+
+    "SyntheticContentScanCredential": "scs:SyntheticContentScanCredential",
+    "scanTimestamp": "scs:scanTimestamp",
+
+    "ImageObject": "schema:ImageObject",
+    "contentUrl": "schema:contentUrl",
+    "encodingFormat": "schema:encodingFormat",
+    "height": "schema:height",
+    "width": "schema:width",
+    "sha256": "schema:sha256",
+    "archivedAt": "schema:archivedAt",
+    "linkedResource": "scs:linkedResource",
+    "thumbnail": "scs:thumbnail",
+
+    "perceptualHash": "scs:perceptualHash",
+    "algorithm": "scs:algorithm",
+    "value": "scs:value",
+    "distanceThreshold": "scs:distanceThreshold",
+    "referenceHashes": "scs:referenceHashes",
+    "matchConfidence": "scs:matchConfidence",
+    "similarityScore": "scs:similarityScore",
+    "source": { "@id": "scs:source", "@type": "@id" },
+
+    "scanResults": {
+      "@id": "scs:scanResults",
+      "@container": "@set"
+    },
+
+    "SynthIDScanResult": "scs:SynthIDScanResult",
+    "mediaType": "scs:mediaType",
+    "tool": "scs:tool",
+    "version": "scs:version",
+    "detected": "scs:detected",
+    "confidence": "scs:confidence",
+    "watermark": "scs:watermark",
+    "reference": "scs:reference",
+
+    "ContentCredentialScanResult": "scs:ContentCredentialScanResult",
+    "issuer": {
+      "@id": "schema:issuer",
+      "@type": "@id"
+    },
+    "manifest": "scs:manifest",
+
+    "ModelScanResult": "scs:ModelScanResult",
+    "labels": "scs:labels",
+    "scores": "scs:scores",
+    "rawResult": "scs:rawResult",
+    "model": "scs:model",
+    "publisher": "schema:publisher",
+    "license": "schema:license",
+    "url": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "name": "schema:name",
+    "description": "schema:description",
+
+    "@vocab": "https://raw.githubusercontent.com/maxxeddev/synthetic-scan-vc-schema/main/contexts#"
+  }
+}

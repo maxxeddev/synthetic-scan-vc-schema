@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/maxxeddev/synthetic-scan-vc-schema/main/schemas/scan-synthid-v1.json",
+  "title": "SynthID Scan Result",
+  "description": "Result of DeepMind SynthID watermark scan, scoped to images.",
+  "type": "object",
+  "required": ["@type", "mediaType", "tool", "detected"],
+  "properties": {
+    "@type": { "type": "string", "const": "SynthIDScanResult" },
+    "mediaType": {
+      "type": "string",
+      "const": "image",
+      "description": "Media type this scan result applies to (e.g., 'image')."
+    },
+    "tool": { "type": "string", "const": "Google DeepMind SynthID" },
+    "version": { "type": "string" },
+    "detected": { "type": "boolean" },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "watermark": { "type": "string" },
+    "reference": { "type": "string", "format": "uri" },
+    "additionalType": { "type": "string", "format": "uri", "description": "Optional: a schema.org/PropertyValue type URI" }
+  }
+}
