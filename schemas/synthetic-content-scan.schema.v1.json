@@ -1,0 +1,141 @@
+{
+  "$id": "https://maxxdedev.github.io/synthetic-scan-vc-schema/schemas/synthetic-content-scan.schema.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SyntheticContentScanCredential",
+  "description": "Credential describing AI content detection, issued as a DID-linked resource on cheqd.",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "type": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "issuer": {
+      "type": "string",
+      "format": "uri"
+    },
+    "issuanceDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "credentialSubject": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "format": "uri" },
+        "version": { "type": "string", "default": "1.0.0" },
+        "contentHash": {
+          "type": "string",
+          "description": "SHA-256 hash of content"
+        },
+        "perceptualHash": {
+          "type": "string",
+          "description": "Perceptual hash used for lookup"
+        },
+        "mediaType": {
+          "type": "string",
+          "description": "MIME type (e.g. image/png, text/html)"
+        },
+        "scanResult": {
+          "type": "object",
+          "properties": {
+            "summary": {
+              "type": "string",
+              "enum": ["ai-generated", "human-generated", "tampered", "unknown", "mixed"]
+            },
+            "detectors": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "const": "ContentDetectionResult"
+                  },
+                  "name": { "type": "string" },
+                  "version": { "type": "string" },
+                  "vendor": { "type": "string" },
+                  "method": {
+                    "type": "string",
+                    "enum": ["watermark", "classification", "embedding-match", "heuristic", "hybrid"]
+                  },
+                  "result": {
+                    "type": "string",
+                    "enum": ["positive", "negative", "inconclusive"]
+                  },
+                  "confidence": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "evidence": {
+                    "type": "string",
+                    "format": "uri"
+                  }
+                },
+                "required": ["type", "name", "result", "confidence"]
+              }
+            }
+          },
+          "required": ["summary", "detectors"]
+        },
+        "scanTimestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "criteria": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "const": "DefinedTerm" },
+            "name": { "type": "string" },
+            "description": { "type": "string" },
+            "url": { "type": "string", "format": "uri" }
+          }
+        },
+        "evidence": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "const": "Document" },
+            "name": { "type": "string" },
+            "url": { "type": "string", "format": "uri" }
+          }
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "contentHash",
+        "perceptualHash",
+        "scanResult",
+        "scanTimestamp"
+      ]
+    },
+    "credentialSchema": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "format": "uri" },
+        "type": { "type": "string" }
+      }
+    },
+    "proof": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string" },
+        "created": { "type": "string", "format": "date-time" },
+        "proofPurpose": { "type": "string" },
+        "verificationMethod": { "type": "string", "format": "uri" },
+        "jws": { "type": "string" }
+      }
+    }
+  },
+  "required": [
+    "@context",
+    "type",
+    "issuer",
+    "issuanceDate",
+    "credentialSubject",
+    "proof"
+  ]
+}
